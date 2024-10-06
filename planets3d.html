@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstroXplore</title>
+    <style>
+        .planet-info {
+            display: none;
+            position: fixed;
+            left: 1%;
+            top: 25%;
+            width: 30%;
+            z-index: 1;
+        }
+
+        .planet-info-content {
+            background-color: rgb(0, 0, 35);
+            padding: 20px;
+            border: 1px solid #888;
+            box-shadow: 0px 0px 10px 3px rgba(255, 255, 0, 0.5);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            overflow-y: auto;
+            /* For scrolling */
+        }
+
+        .close-btn {
+            color: lightyellow;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: white;
+            cursor: pointer;
+        }
+
+        h2 {
+            color: lightyellow;
+        }
+
+        p {
+            color: white;
+            line-height: 1.5;
+        }
+
+        #gui-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="gui-container"></div>
+    <div id="planetInfo" class="planet-info">
+        <div class="planet-info-content">
+            <span class="close-btn" onclick="closeInfo()">&times;</span>
+            <h2 id="planetName"></h2>
+            <p id="planetDetails"></p>
+        </div>
+    </div>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+                "three/examples/jsm/controls/OrbitControls": "https://unpkg.com/three@0.128.0/examples/jsm/controls/OrbitControls.js",
+                "three/examples/jsm/loaders/GLTFLoader": "https://unpkg.com/three@0.128.0/examples/jsm/loaders/GLTFLoader.js",
+                "three/examples/jsm/postprocessing/EffectComposer": "https://unpkg.com/three@0.128.0/examples/jsm/postprocessing/EffectComposer.js",
+                "three/examples/jsm/postprocessing/RenderPass": "https://unpkg.com/three@0.128.0/examples/jsm/postprocessing/RenderPass.js",
+                "three/examples/jsm/postprocessing/ShaderPass": "https://unpkg.com/three@0.128.0/examples/jsm/postprocessing/ShaderPass.js",
+                "three/examples/jsm/postprocessing/UnrealBloomPass": "https://unpkg.com/three@0.128.0/examples/jsm/postprocessing/UnrealBloomPass.js",
+                "three/examples/jsm/postprocessing/OutlinePass": "https://unpkg.com/three@0.128.0/examples/jsm/postprocessing/OutlinePass.js"
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
+    <script type="module" src="./planets3d.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>AstroXplore</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Cardo:400i|Rubik:400,700&display=swap");
+
+    :root {
+      --d: 700ms;
+      --e: cubic-bezier(0.19, 1, 0.22, 1);
+      --font-sans: "Rubik", sans-serif;
+      --font-serif: "Cardo", serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjzLc5wGAVNHq04YHVilxvHF52W21M2aEJz2Jqtm6vw0k029h90BFzDco&s=10);
+      height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+    }
+
+    .page-content {
+      display: grid;
+      grid-gap: 1rem;
+      padding: 1rem;
+      max-width: 1024px;
+      margin: 0 auto;
+      font-family: var(--font-sans);
+    }
+
+    @media (min-width: 600px) {
+      .page-content {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 800px) {
+      .page-content {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .card {
+      border-radius: 50px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      padding: 1rem;
+      width: 100%;
+      text-align: center;
+      color: whitesmoke;
+      background-color: whitesmoke;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.1), 0 8px 8px rgba(0, 0, 0, 0.1), 0 16px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (min-width: 600px) {
+      .card {
+        height: 350px;
+      }
+    }
+
+    .card:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 110%;
+      background-size: cover;
+      background-position: 0 0;
+      transition: transform calc(var(--d) * 1.5) var(--e);
+      pointer-events: none;
+    }
+
+    .card:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 200%;
+      pointer-events: none;
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.009) 11.7%, rgba(0, 0, 0, 0.034) 22.1%, rgba(0, 0, 0, 0.072) 31.2%, rgba(0, 0, 0, 0.123) 39.4%, rgba(0, 0, 0, 0.182) 46.6%, rgba(0, 0, 0, 0.249) 53.1%, rgba(0, 0, 0, 0.32) 58.9%, rgba(0, 0, 0, 0.394) 64.3%, rgba(0, 0, 0, 0.468) 69.3%, rgba(0, 0, 0, 0.54) 74.1%, rgba(0, 0, 0, 0.607) 78.8%, rgba(0, 0, 0, 0.668) 83.6%, rgba(0, 0, 0, 0.721) 88.7%, rgba(0, 0, 0, 0.762) 94.1%, rgba(0, 0, 0, 0.79) 100%);
+      transform: translateY(-50%);
+      transition: transform calc(var(--d) * 2) var(--e);
+    }
+
+    .card:nth-child(1):before {
+      background-image: url(https://cdn.dribbble.com/users/1040516/screenshots/18290051/media/abe6116384d0cf3de0af235bfc8f1f14.png);
+    }
+
+    .card:nth-child(2):before {
+      background-image: url(https://img.freepik.com/premium-photo/complex-solar-system-with-numerous-planet-this-illustration-depicts-bustling-solar-system-with-multiple-planets-orbiting-around-central-star-white-png-transparent-background_94628-45112.jpg);
+    }
+
+    .card:nth-child(3):before {
+      background-image: url(https://i0.wp.com/newspaceeconomy.ca/wp-content/uploads/2024/06/newspaceeconomy_a_satellite_orbiting_a_large_asteroid_in_the_bl_9d66897b-b314-4da4-b93a-3be6b4a29c6d-1.png?resize=800%2C800&quality=80&ssl=1);
+    }
+
+
+    .content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 1rem;
+      transition: transform var(--d) var(--e);
+      z-index: 1;
+    }
+
+    .content>*+* {
+      margin-top: 1rem;
+    }
+
+    .title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+
+    .copy {
+      font-family: var(--font-serif);
+      font-size: 1.125rem;
+      font-style: italic;
+      line-height: 1.35;
+    }
+
+    .btn {
+      cursor: pointer;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.65rem;
+      font-weight: bold;
+      letter-spacing: 0.025rem;
+      text-transform: uppercase;
+      color: white;
+      background-color: black;
+      border: none;
+    }
+
+    .btn:hover {
+      background-color: #0d0d0d;
+    }
+
+    .btn:focus {
+      outline: 1px dashed yellow;
+      outline-offset: 3px;
+    }
+
+    @media (hover: hover) and (min-width: 600px) {
+      .card:after {
+        transform: translateY(0);
+      }
+
+      .content {
+        transform: translateY(calc(100% - 4.5rem));
+      }
+
+      .content>*:not(.title) {
+        opacity: 0;
+        transform: translateY(1rem);
+        transition: transform var(--d) var(--e), opacity var(--d) var(--e);
+      }
+
+      .card:hover,
+      .card:focus-within {
+        align-items: center;
+      }
+
+      .card:hover:before,
+      .card:focus-within:before {
+        transform: translateY(-4%);
+      }
+
+      .card:hover:after,
+      .card:focus-within:after {
+        transform: translateY(-50%);
+      }
+
+      .card:hover .content,
+      .card:focus-within .content {
+        transform: translateY(0);
+      }
+
+      .card:hover .content>*:not(.title),
+      .card:focus-within .content>*:not(.title) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: calc(var(--d) / 8);
+      }
+
+      .card:focus-within:before,
+      .card:focus-within:after,
+      .card:focus-within .content,
+      .card:focus-within .content>*:not(.title) {
+        transition-duration: 0s;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <main class="page-content">
+    <div class="card">
+      <div class="content">
+        <h2 class="title">Solar System 2D</h2>
+        <p class="copy">Here You Can Explore Solar System In 2D</p>
+        <a href="planets2d/index.html">
+          <button class="btn">Let's Explore</button>
+        </a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="content">
+        <h2 class="title">Solar System 3D</h2>
+        <p class="copy">Here You Can Explore Solar System In 3D</p>
+        <a href="planets3d.html">
+          <button class="btn">Let's Explore</button>
+        </a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="content">
+        <h2 class="title">Near Earth Objects</h2>
+        <p class="copy">Here You Can Explore Near Earth Objects</p>
+        <a href="earthneo/index.html">
+          <button class="btn">Let's Explore</button>
+        </a>
+      </div>
+    </div>
+  </main>
+
+</body>
+
+</html>
